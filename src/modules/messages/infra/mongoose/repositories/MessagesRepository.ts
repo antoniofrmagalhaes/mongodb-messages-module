@@ -1,5 +1,5 @@
-import ICreateMessageDTO from '../../../DTO/ICreateMessageDTO';
 import Message, { IMessageDocument } from '../entities/schemas/Message';
+import ICreateMessageDTO from '../../../DTO/ICreateMessageDTO';
 
 class MessagesRepository {
   public async create({
@@ -12,6 +12,7 @@ class MessagesRepository {
       title,
       content,
     });
+
     return message;
   }
 }
