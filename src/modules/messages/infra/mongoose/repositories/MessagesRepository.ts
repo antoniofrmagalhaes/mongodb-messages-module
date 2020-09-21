@@ -44,6 +44,12 @@ class MessagesRepository {
     };
   }
 
+  public async findById(message_id: string): Promise<IMessageDocument> {
+    const message = await Message.findById({ _id: message_id });
+
+    return message;
+  }
+
   public async create({
     from,
     title,
