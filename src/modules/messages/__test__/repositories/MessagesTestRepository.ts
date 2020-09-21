@@ -1,11 +1,32 @@
 import { v4 as uuid } from 'uuid';
+
 import ICreateMessageDTO from '../../DTO/ICreateMessageDTO';
 import Message, {
   IMessageDocument,
 } from '../../infra/mongoose/entities/schemas/Message';
+import {
+  IQuery,
+  IResponse,
+} from '../../infra/mongoose/repositories/MessagesRepository';
 
 class MessagessTestRepository {
   private messagesRepository: IMessageDocument[] = [];
+
+  public async find(query: IQuery): Promise<IResponse> {
+    if (query)
+      return {
+        total: this.messagesRepository.length,
+        unread: this.messagesRepository.map(message => message.read === false)
+          .length,
+        result: this.messagesRepository,
+      };
+    return {
+      total: this.messagesRepository.length,
+      unread: this.messagesRepository.map(message => message.read === false)
+        .length,
+      result: this.messagesRepository,
+    };
+  }
 
   public async create({
     from,
