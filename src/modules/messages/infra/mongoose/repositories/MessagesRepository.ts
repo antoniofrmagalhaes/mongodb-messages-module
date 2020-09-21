@@ -63,6 +63,10 @@ class MessagesRepository {
 
     return message;
   }
+
+  public async delete(message_id: string): Promise<void> {
+    await Message.findByIdAndDelete({ _id: message_id });
+  }
 }
 
 export default MessagesRepository;
