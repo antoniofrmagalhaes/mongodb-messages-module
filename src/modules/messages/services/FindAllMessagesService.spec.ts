@@ -27,7 +27,6 @@ describe('Find All Messages Service Test', () => {
     });
 
     const messages = await findAllMessagesService.execute({});
-    console.log(messages);
     expect(messages).toStrictEqual({
       total: 2,
       unread: 2,
