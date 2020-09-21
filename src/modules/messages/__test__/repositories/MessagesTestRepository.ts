@@ -28,6 +28,14 @@ class MessagessTestRepository {
     };
   }
 
+  public async findById(message_id: string): Promise<IMessageDocument> {
+    const message = this.messagesRepository.find(
+      message => message._id === message_id,
+    );
+
+    return message;
+  }
+
   public async create({
     from,
     title,
