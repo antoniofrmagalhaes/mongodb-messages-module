@@ -64,6 +64,16 @@ class MessagesRepository {
     return message;
   }
 
+  public async markAsRead(message_id: string): Promise<IMessageDocument> {
+    const updated = await Message.findByIdAndUpdate(
+      message_id,
+      { read: true },
+      { new: true },
+    );
+
+    return updated;
+  }
+
   public async delete(message_id: string): Promise<void> {
     await Message.findByIdAndDelete({ _id: message_id });
   }
