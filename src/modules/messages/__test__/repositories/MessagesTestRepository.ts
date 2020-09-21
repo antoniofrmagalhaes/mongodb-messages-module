@@ -60,6 +60,25 @@ class MessagessTestRepository {
     return message;
   }
 
+  public async markAsRead(message_id: string): Promise<IMessageDocument> {
+    const message = this.messagesRepository.find(
+      message => message._id === message_id,
+    );
+
+    const index = this.messagesRepository.findIndex(
+      message => message._id === message_id,
+    );
+
+    const updated = Object.assign(message, {
+      read: true,
+      updatedAt: new Date(),
+    });
+
+    this.messagesRepository[index] = updated;
+
+    return updated;
+  }
+
   public async delete(message_id: string): Promise<void> {
     const messageIndex = this.messagesRepository.findIndex(
       message => message._id === message_id,
