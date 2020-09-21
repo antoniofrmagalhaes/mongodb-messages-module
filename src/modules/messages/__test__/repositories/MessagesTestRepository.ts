@@ -59,6 +59,14 @@ class MessagessTestRepository {
 
     return message;
   }
+
+  public async delete(message_id: string): Promise<void> {
+    const messageIndex = this.messagesRepository.findIndex(
+      message => message._id === message_id,
+    );
+
+    this.messagesRepository.splice(messageIndex, 1);
+  }
 }
 
 export default MessagessTestRepository;
