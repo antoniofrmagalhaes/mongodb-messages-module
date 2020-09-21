@@ -7,7 +7,7 @@ import {
 
 export default interface IMessagesRepository {
   find(query: IQuery): Promise<IResponse>;
-  findById(notification_id: string): Promise<IMessageDocument>;
-  create(notificationData: ICreateMessageDTO): Promise<IMessageDocument>;
-  delete(notification_id: string): Promise<void>;
+  findById(message_id: string): Promise<IMessageDocument>;
+  create(data: ICreateMessageDTO): Promise<IMessageDocument>;
+  delete(message_id: string): Promise<void>;
 }
